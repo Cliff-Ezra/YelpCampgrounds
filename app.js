@@ -3,6 +3,7 @@ const app = express();
 const path = require('path');
 const mongoose = require("mongoose");
 const methodOverride = require('method-override')
+const ejsMate = require('ejs-mate')
 
 //Requiring the model
 const Campground = require('./models/campground');
@@ -21,7 +22,10 @@ app.set('view engine', 'ejs');
 //Middleware:
 //To parse form data in POST request body
 app.use(express.urlencoded({ extended: true }));
+//To override the method in the form
 app.use(methodOverride('_method'))
+//To use the engine
+app.engine('ejs', ejsMate);
 
 
 //Routes:
